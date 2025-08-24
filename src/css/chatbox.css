@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #6e5f69;
+}
+
+#root{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+#chatbox {
+    width: 60%;
+    min-width: fit-content;
+    margin: 30px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    background: #38112f;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background: #ece5dd;
+    display: flex;
+    flex-direction: column;
+}
+
+.msg {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin: 6px 0;
+    word-wrap: break-word;
+    max-width: 70%;
+    font-size: 15px;
+    position: relative;
+}
+
+.user {
+    background: #8f4f7c;
+    color: #ffffff;
+    align-self: flex-end;
+    text-align: left;
+}
+
+.user::after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    top: 10px;
+    border-width: 8px 0 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent #8f4f7c;
+}
+
+.bot {
+    background: #524f51;
+    color: #ffffff;
+    border: 1px solid #ccc;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.bot::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 10px;
+    border-width: 8px 8px 8px 0;
+    border-style: solid;
+    border-color: transparent #524f51 transparent transparent;
+}
+
+form {
+    display: flex;
+    padding: 10px;
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+}
+
+input[type=text] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+input[type=submit] {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #38112f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: gray;
+    text-align: center;
+    padding: 5px;
+}
+
+.bot pre {
+    white-space: pre-wrap;
+    /* Wrap lines instead of overflowing */
+    word-wrap: break-word;
+    /* Break long words */
+    margin: 0;
+    /* Remove default pre margin */
+    font-family: inherit;
+    /* Match bot font */
+}
