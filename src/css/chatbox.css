@@ -12,7 +12,7 @@ body {
 }
 #chatbox {
     width: 60%;
-    min-width: fit-content;
+    /* min-width: fit-content; */
     margin: 30px auto;
     background: #ffffff;
     border-radius: 10px;
