@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { getAdvice, getKeywords } from "./api/message.js"
+import Loader from './Loader.jsx';
 import './css/chatbox.css';
 
 
@@ -9,6 +10,11 @@ const Chatbox = () => {
   const [keywords, setKeywords] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null); 
+  
+  useEffect(() => {
+  messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+}, [history, isLoading]);
 
   useEffect(() => {
     const fetchKeywords = async () => {
@@ -88,10 +94,13 @@ const Chatbox = () => {
         ))}
         {/* Add loading indicator message */}
         {isLoading && (
-          <div className="msg bot">
-            <b>ResQ AI:</b> <pre>loading...</pre>
+          <div className="loader">
+            <Loader />
+            {/* <b>ResQ AI:</b> <pre>loading...</pre> */}
           </div>
         )}
+        <div ref={messagesEndRef} /> {/* Invisible anchor to scroll to */}
+
       </div>
       <form onSubmit={handleSubmit}>
         <input
