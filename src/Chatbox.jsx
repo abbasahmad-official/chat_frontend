@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { getAdvice, getKeywords } from "./api/message.js"
 import Loader from './Loader.jsx';
+import {Send} from "lucide-react"
 import './css/chatbox.css';
 
 
@@ -11,6 +12,7 @@ const Chatbox = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null); 
+  const [isMobile, setisMobile] = useState(window.innerWidth <= 768);
   
   useEffect(() => {
   messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -33,6 +35,14 @@ const Chatbox = () => {
 
     fetchKeywords();
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {    
+      setisMobile(window.innerWidth <= 768);
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobile]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -111,7 +121,8 @@ const Chatbox = () => {
           required
         />
         {/* <p>{JSON.stringify(keywords)}</p> */}
-        <input type="submit" value="Send" />
+        {isMobile?<button type="submit" aria-label="Send" className='send'><Send /></button>:<input type="submit" value="Send" />
+        }
       </form>
       {/* <p>{JSON.stringify(keywords)}</p> */}
       <p className="disclaimer">
